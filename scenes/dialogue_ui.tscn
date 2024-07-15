@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3hubf4f08kio"]
+
+[ext_resource type="Script" path="res://scripts/dialogue_ui.gd" id="1_7svvp"]
+[ext_resource type="Script" path="res://scripts/dialogue_node.gd" id="1_d3gm8"]
+
+[node name="DialogueUI" type="CanvasLayer"]
+script = ExtResource("1_7svvp")
+_text_speed = 0.01
+
+[node name="DialogueManager" type="Node" parent="."]
+
+[node name="DialogueNode" type="Node" parent="DialogueManager"]
+script = ExtResource("1_d3gm8")
+_content = Array[String](["coucouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu", "recoucou"])
+
+[node name="TextWindow" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TextBG" type="ColorRect" parent="TextWindow"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -624.0
+offset_top = -225.0
+offset_right = 624.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+color = Color(0, 0, 0, 0.27451)
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextWindow"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -525.0
+offset_top = -204.0
+offset_right = 525.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 35
+text = "insert placeholder text here :)))"
