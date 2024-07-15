@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3hubf4f08kio"]
+[gd_scene load_steps=6 format=3 uid="uid://c3hubf4f08kio"]
 
 [ext_resource type="Script" path="res://scripts/dialogue_ui.gd" id="1_7svvp"]
 [ext_resource type="Script" path="res://scripts/dialogue_node.gd" id="1_d3gm8"]
+[ext_resource type="Texture2D" uid="uid://chdrlobpych6f" path="res://sprites/sad.png" id="3_1sqnp"]
+[ext_resource type="Texture2D" uid="uid://bbgo1yviu4gnh" path="res://icon.svg" id="3_htknp"]
+[ext_resource type="Texture2D" uid="uid://b8x4m4j14k8th" path="res://sprites/smile.png" id="4_fbmgl"]
 
 [node name="DialogueUI" type="CanvasLayer"]
 script = ExtResource("1_7svvp")
@@ -11,7 +14,28 @@ _text_speed = 0.01
 
 [node name="DialogueNode" type="Node" parent="DialogueManager"]
 script = ExtResource("1_d3gm8")
-_content = Array[String](["coucouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu", "recoucou"])
+_content = Array[String](["coucouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu", "recoucou"])
+_sprites = Array[Texture2D]([ExtResource("3_1sqnp"), ExtResource("4_fbmgl")])
+_speaker = "Aigis"
+
+[node name="DialogueNode2" type="Node" parent="DialogueManager"]
+script = ExtResource("1_d3gm8")
+_content = Array[String](["c'est le deuxieme dialogue"])
+_sprites = Array[Texture2D]([ExtResource("3_1sqnp")])
+_speaker = "salam"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -128.0
+offset_right = 64.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_htknp")
 
 [node name="TextWindow" type="Control" parent="."]
 layout_mode = 3
@@ -33,14 +57,29 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -624.0
-offset_top = -225.0
-offset_right = 624.0
+offset_left = -551.0
+offset_top = -185.0
+offset_right = 548.0
+offset_bottom = -52.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
 color = Color(0, 0, 0, 0.27451)
-metadata/_edit_use_anchors_ = true
+
+[node name="SpeakerBG" type="ColorRect" parent="TextWindow"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -514.0
+offset_top = -227.0
+offset_right = -181.0
+offset_bottom = -175.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 0.490196)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TextWindow"]
 layout_mode = 1
@@ -49,10 +88,28 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -525.0
-offset_top = -204.0
-offset_right = 525.0
+offset_left = -353.0
+offset_top = -172.0
+offset_right = 359.0
+offset_bottom = -53.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/normal_font_size = 35
-text = "insert placeholder text here :)))"
+text = "Same with me...
+Were we kidnapped by the same people ?"
+
+[node name="SpeakerLabel" type="RichTextLabel" parent="TextWindow"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -494.0
+offset_top = -225.0
+offset_right = -206.0
+offset_bottom = -181.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 30
+text = "Maki Harukawa"
