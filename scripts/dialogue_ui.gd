@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var _nodes : Array[DialogueNode]
+var _nodes : Array
 var _active_node : DialogueNode = null
 var _active_node_index := 0
 
@@ -13,21 +13,33 @@ var _cooldown_text : float = 0.0
 var _inner_index : int = 1
 
 func finish():
-	print("fini")
+	$ChoicesWindow.hideall()
+	$TextureRect.visible = false
+	$TextWindow.visible = false
 
-func next():
+func next(dialogues = null):
 	if _active_node.next_text() != 0:
 		# go to next node
-		_active_node_index += 1
-		if _active_node_index >= len(_nodes):
+		_nodes.pop_front()
+		if dialogues:
+			print(dialogues)
+			print(_nodes)
+			_nodes = dialogues + _nodes
+			print(_nodes)
+		if len(_nodes) == 0:
 			finish()
 			return
-		_active_node = _nodes[_active_node_index]
+		_active_node = _nodes[0]
 	_text_window.text = _active_node._active_content
 	_text_window.set_visible_characters(0)
 	_inner_index = 0
 	_sprite_window.texture = _active_node._active_texture
 	_speaker_window.text = _active_node._speaker
+	if _active_node is ChoiceNode:
+		if len((_active_node as ChoiceNode)._choices) == 2:
+			$ChoicesWindow.display2((_active_node as ChoiceNode)._choices)
+		else:
+			$ChoicesWindow.display3((_active_node as ChoiceNode)._choices)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -58,5 +70,10 @@ func _process(delta):
 	
 	# text is fully printed
 	if Input.is_action_just_pressed("ui_accept"):
-		next()
+		if _active_node is ChoiceNode:
+			await get_tree().create_timer(0.01).timeout
+			var dialogues = (_active_node as ChoiceNode).get_dialogues($ChoicesWindow.selected)
+			next(dialogues)
+		else:
+			next()
 			
