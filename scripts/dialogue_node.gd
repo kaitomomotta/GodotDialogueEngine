@@ -13,6 +13,8 @@ var _active_texture : Texture2D
 func _ready():
 	_active_content = _content[0]
 	_active_texture = _sprites[0]
+	_index = 0
+	return
 
 func next_text() -> int:
 	_index += 1
