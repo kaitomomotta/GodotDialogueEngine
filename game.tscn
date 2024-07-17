@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://by7l127cuebds"]
+
+[ext_resource type="PackedScene" uid="uid://c3hubf4f08kio" path="res://scenes/dialogue_ui.tscn" id="1_6lqaf"]
+[ext_resource type="PackedScene" uid="uid://b7orfdl43fuf6" path="res://scenes/debug_ui.tscn" id="2_2sn8h"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5e7yr"]
+
+[sub_resource type="Environment" id="Environment_c4rvk"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 0, 0, 1)
+
+[node name="Game" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.997432, -0.0716193, 0, 0.0716193, 0.997432, 0, 1.27599, 3.16637)
+
+[node name="DialogueUI" parent="." instance=ExtResource("1_6lqaf")]
+
+[node name="DebugUI" parent="." instance=ExtResource("2_2sn8h")]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.674483, 0, -0.738291, -0.407533, 0.833847, -0.372311, 0.615622, 0.551995, 0.562416, 0, 0, 0)
+mesh = SubResource("BoxMesh_5e7yr")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_c4rvk")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.745755, -0.390794, 0.539564, 0, 0.809888, 0.586584, -0.66622, -0.437448, 0.603978, 1.42211, 1.24195, 0)

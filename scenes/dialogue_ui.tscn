@@ -1,85 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3hubf4f08kio"]
+[gd_scene load_steps=4 format=3 uid="uid://c3hubf4f08kio"]
 
 [ext_resource type="Script" path="res://scripts/dialogue_ui.gd" id="1_7svvp"]
-[ext_resource type="Script" path="res://scripts/dialogue_node.gd" id="1_d3gm8"]
-[ext_resource type="Texture2D" uid="uid://chdrlobpych6f" path="res://sprites/sad.png" id="3_1sqnp"]
 [ext_resource type="Texture2D" uid="uid://bbgo1yviu4gnh" path="res://icon.svg" id="3_htknp"]
-[ext_resource type="Texture2D" uid="uid://b8x4m4j14k8th" path="res://sprites/smile.png" id="4_fbmgl"]
-[ext_resource type="Script" path="res://scripts/choice_node.gd" id="5_wpvvt"]
 [ext_resource type="PackedScene" uid="uid://dqadkyv42pg4w" path="res://scenes/choices_window.tscn" id="7_eg0ob"]
 
 [node name="DialogueUI" type="CanvasLayer"]
 script = ExtResource("1_7svvp")
 _text_speed = 0.01
-
-[node name="DialogueManager" type="Node" parent="."]
-
-[node name="DialogueNode" type="Node" parent="DialogueManager"]
-script = ExtResource("1_d3gm8")
-_content = Array[String](["coucouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu", "recoucou"])
-_sprites = Array[Texture2D]([ExtResource("3_1sqnp"), ExtResource("4_fbmgl")])
-_speaker = "Aigis"
-
-[node name="DialogueNode2" type="Node" parent="DialogueManager"]
-script = ExtResource("1_d3gm8")
-_content = Array[String](["c'est le deuxieme dialogue"])
-_sprites = Array[Texture2D]([ExtResource("3_1sqnp")])
-_speaker = "salam"
-
-[node name="ChoiceNode" type="Node" parent="DialogueManager"]
-script = ExtResource("5_wpvvt")
-_choices = Array[String](["choix 1", "8 sides"])
-_content = Array[String](["on choisit quoi stp"])
-_sprites = Array[Texture2D]([ExtResource("3_1sqnp")])
-
-[node name="choice1" type="Node" parent="DialogueManager/ChoiceNode"]
-
-[node name="DialogueNode" type="Node" parent="DialogueManager/ChoiceNode/choice1"]
-script = ExtResource("1_d3gm8")
-_content = Array[String](["pk la choix 1 stp"])
-_sprites = Array[Texture2D]([ExtResource("3_1sqnp")])
-
-[node name="choice2" type="Node" parent="DialogueManager/ChoiceNode"]
-
-[node name="DialogueNode" type="Node" parent="DialogueManager/ChoiceNode/choice2"]
-script = ExtResource("1_d3gm8")
-_content = Array[String](["an octogon is a polygon with 8 sides :))))"])
-_sprites = Array[Texture2D]([ExtResource("4_fbmgl")])
-
-[node name="ChoiceNode" type="Node" parent="DialogueManager/ChoiceNode/choice2"]
-script = ExtResource("5_wpvvt")
-_choices = Array[String](["oui", "non"])
-_content = Array[String](["vraiment ?"])
-_sprites = Array[Texture2D]([ExtResource("4_fbmgl")])
-_speaker = "moi"
-
-[node name="choice1" type="Node" parent="DialogueManager/ChoiceNode/choice2/ChoiceNode"]
-
-[node name="DialogueNode" type="Node" parent="DialogueManager/ChoiceNode/choice2/ChoiceNode/choice1"]
-script = ExtResource("1_d3gm8")
-_content = Array[String](["cool :)"])
-_sprites = Array[Texture2D]([ExtResource("4_fbmgl")])
-_speaker = "moi2"
-
-[node name="choice2" type="Node" parent="DialogueManager/ChoiceNode/choice2/ChoiceNode"]
-
-[node name="DialogueNode" type="Node" parent="DialogueManager/ChoiceNode/choice2/ChoiceNode/choice2"]
-script = ExtResource("1_d3gm8")
-_content = Array[String](["oh :("])
-_sprites = Array[Texture2D]([ExtResource("3_1sqnp")])
-_speaker = "oh :((("
-
-[node name="DialogueNode2" type="Node" parent="DialogueManager/ChoiceNode/choice2"]
-script = ExtResource("1_d3gm8")
-_content = Array[String](["a deux doigts de rater les maths", "c'est pr ça j'ai mis 12 en probas"])
-_sprites = Array[Texture2D]([ExtResource("3_1sqnp"), ExtResource("4_fbmgl")])
-_speaker = "stiker"
-
-[node name="DialogueNode3" type="Node" parent="DialogueManager"]
-script = ExtResource("1_d3gm8")
-_content = Array[String](["anyway bisou bisou"])
-_sprites = Array[Texture2D]([ExtResource("4_fbmgl")])
-_speaker = "kaito mon bb"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 7

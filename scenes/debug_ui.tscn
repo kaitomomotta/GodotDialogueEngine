@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7orfdl43fuf6"]
+
+[ext_resource type="Script" path="res://scripts/debug_ui.gd" id="1_r7id6"]
+[ext_resource type="Script" path="res://scripts/dialogue_node.gd" id="2_dnrc0"]
+[ext_resource type="Texture2D" uid="uid://chdrlobpych6f" path="res://sprites/sad.png" id="3_i4flo"]
+[ext_resource type="Texture2D" uid="uid://b8x4m4j14k8th" path="res://sprites/smile.png" id="4_u8xq4"]
+[ext_resource type="Script" path="res://scripts/choice_node.gd" id="5_vxkt3"]
+
+[node name="DebugUI" type="CanvasLayer"]
+script = ExtResource("1_r7id6")
+
+[node name="TestDialogue" type="Node" parent="."]
+
+[node name="DialogueNode" type="Node" parent="TestDialogue"]
+script = ExtResource("2_dnrc0")
+_content = Array[String](["coucouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu", "recoucou"])
+_sprites = Array[Texture2D]([ExtResource("3_i4flo"), ExtResource("4_u8xq4")])
+_speaker = "Aigis"
+
+[node name="DialogueNode2" type="Node" parent="TestDialogue"]
+script = ExtResource("2_dnrc0")
+_content = Array[String](["c'est le deuxieme dialogue"])
+_sprites = Array[Texture2D]([ExtResource("3_i4flo")])
+_speaker = "salam"
+
+[node name="ChoiceNode" type="Node" parent="TestDialogue"]
+script = ExtResource("5_vxkt3")
+_choices = Array[String](["choix 1", "8 sides"])
+_content = Array[String](["on choisit quoi stp"])
+_sprites = Array[Texture2D]([ExtResource("3_i4flo")])
+
+[node name="choice1" type="Node" parent="TestDialogue/ChoiceNode"]
+
+[node name="DialogueNode" type="Node" parent="TestDialogue/ChoiceNode/choice1"]
+script = ExtResource("2_dnrc0")
+_content = Array[String](["pk la choix 1 stp"])
+_sprites = Array[Texture2D]([ExtResource("3_i4flo")])
+
+[node name="choice2" type="Node" parent="TestDialogue/ChoiceNode"]
+
+[node name="DialogueNode" type="Node" parent="TestDialogue/ChoiceNode/choice2"]
+script = ExtResource("2_dnrc0")
+_content = Array[String](["an octogon is a polygon with 8 sides :))))"])
+_sprites = Array[Texture2D]([ExtResource("4_u8xq4")])
+
+[node name="ChoiceNode" type="Node" parent="TestDialogue/ChoiceNode/choice2"]
+script = ExtResource("5_vxkt3")
+_choices = Array[String](["oui", "non"])
+_content = Array[String](["vraiment ?"])
+_sprites = Array[Texture2D]([ExtResource("4_u8xq4")])
+_speaker = "moi"
+
+[node name="choice1" type="Node" parent="TestDialogue/ChoiceNode/choice2/ChoiceNode"]
+
+[node name="DialogueNode" type="Node" parent="TestDialogue/ChoiceNode/choice2/ChoiceNode/choice1"]
+script = ExtResource("2_dnrc0")
+_content = Array[String](["cool :)"])
+_sprites = Array[Texture2D]([ExtResource("4_u8xq4")])
+_speaker = "moi2"
+
+[node name="choice2" type="Node" parent="TestDialogue/ChoiceNode/choice2/ChoiceNode"]
+
+[node name="DialogueNode" type="Node" parent="TestDialogue/ChoiceNode/choice2/ChoiceNode/choice2"]
+script = ExtResource("2_dnrc0")
+_content = Array[String](["oh :("])
+_sprites = Array[Texture2D]([ExtResource("3_i4flo")])
+_speaker = "oh :((("
+
+[node name="DialogueNode2" type="Node" parent="TestDialogue/ChoiceNode/choice2"]
+script = ExtResource("2_dnrc0")
+_content = Array[String](["a deux doigts de rater les maths", "c'est pr ça j'ai mis 12 en probas"])
+_sprites = Array[Texture2D]([ExtResource("3_i4flo"), ExtResource("4_u8xq4")])
+_speaker = "stiker"
+
+[node name="DialogueNode3" type="Node" parent="TestDialogue"]
+script = ExtResource("2_dnrc0")
+_content = Array[String](["anyway bisou bisou"])
+_sprites = Array[Texture2D]([ExtResource("4_u8xq4")])
+_speaker = "kaito mon bb"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 129.0
+offset_bottom = 66.0
+
+[node name="SpawnTestDialogueButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "spawn dialogue"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "quit game"
+
+[connection signal="pressed" from="VBoxContainer/SpawnTestDialogueButton" to="." method="_on_spawn_test_dialogue_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

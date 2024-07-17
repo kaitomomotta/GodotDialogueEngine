@@ -79,7 +79,13 @@ func next(dialogues = null):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	init_dialogue($DialogueManager)
+	#init_dialogue($DialogueManager)
+	$ChoicesWindow.hideall()
+	$TextureRect.visible = false
+	$TextWindow.visible = false
+	_nodes = []
+	_active_node = null
+	Linking.DialogueUI = self
 	return
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -91,18 +97,19 @@ func _process(delta):
 	# advance display
 	if len(_text_window.text) >= _inner_index:
 		_cooldown_text += delta
-		if _cooldown_text >= _text_speed:
+		if _cooldown_text >= _text_speed or Input.is_action_pressed("dialogue_ffwd"):
 			_text_window.set_visible_characters(_inner_index)
 			_inner_index += 1
 			_cooldown_text = 0
 		return
 	
 	# text is fully printed
-	if Input.is_action_just_pressed("ui_accept"):
-		if _active_node is ChoiceNode:
+	if _active_node is ChoiceNode: 
+		if Input.is_action_just_pressed("dialogue_accept"):
 			await get_tree().create_timer(0.01).timeout
 			var dialogues = (_active_node as ChoiceNode).get_dialogues($ChoicesWindow.selected)
 			next(dialogues)
-		else:
-			next()
+		return
+	if Input.is_action_just_pressed("dialogue_accept") or Input.is_action_pressed("dialogue_ffwd"):
+		next()
 	return

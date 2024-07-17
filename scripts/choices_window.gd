@@ -70,7 +70,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_up"):
 		hovered = (hovered - 1 + len(_actives)) % len(_actives)
 		set_hovered(hovered)
-	if Input.is_action_just_pressed("ui_accept") && listening:
+	if Input.is_action_just_pressed("dialogue_accept") && listening:
 		selected = hovered
 		hideall()
 	return
